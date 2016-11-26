@@ -1,0 +1,70 @@
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-xs-3">
+      <form name="form">
+        <label class="pull-left" for="flightsSelect">Choisissez un aéroport: </label>
+        <select class="form-control" name="selectAirport" id="airportSelect">
+          <option>France - Charles-De-Gaulle</option>
+          <option>France - Orly</option>
+        </select>
+      </form>
+    </div>
+
+    <div class="col-xs-3">
+      <form name="form">
+        <label class="pull-left" for="flightsSelect">Choisissez un vol: </label>
+        <select class="form-control" name="repeatSelect" id="flightsSelect" ng-model="selectedFlight">
+          <option ng-repeat="f in flights" value="{{f.id}}">{{f.name}}</option>
+        </select>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div ng-show="selectedFlight" class="jumbotron information">
+  <div class="row">
+    <div class="col-xs-4">
+      <p>Nombre de Passagers</p>
+      <p>{{flight.passengers}}</p>
+    </div>
+    <div class="col-xs-4">
+      <p>Protégés par Gabriel</p>
+      <p>{{flight['optIn']}}</p>
+    </div>
+    <div class="col-xs-4">
+      <p>Problèmes Identifiés</p>
+      <p>{{flight.optIn}}</p>
+      <a ng-show="!listProblems" ng-click="listProblems = true">Lister les problèmes</a>
+      <a ng-show="listProblems" ng-click="listProblems = false">Cacher les problèmes</a>
+    </div>
+  </div>
+
+  <br>
+  <div ng-show="listProblems" class="row">
+    <table class="table">
+      <thead>
+      <td>Type</td>
+      <td>Nombre de passagers affectés</td>
+      <td>Actions</td>
+      </thead>
+      <tr ng-repeat="p in problems[selectedFlight]">
+        <td>{{p.type}}</td>
+        <td>{{p.passengers}}</td>
+        <td ng-click="solve(p)"><a>Résoudre</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id"></ui-gmap-marker>
+
+
+<div class="jumbotron">
+  <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options' events="map.events" control="googlemap">
+    <ui-gmap-layer type="TrafficLayer" show="map.showTrafficLayer"></ui-gmap-layer>
+    <ui-gmap-window coords="MapOptions.markers.selected.coords" show="windowOptions.show" closeClick="closeClick()">
+      <div>Hello</div>
+    </ui-gmap-window>
+  </ui-gmap-google-map>
+</div>
