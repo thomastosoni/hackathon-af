@@ -13,16 +13,16 @@ angular.module('hackathonAf2App')
     // Data Init
     $scope.selectedFlight = false;
     $scope.flights = [
-      {id: 0, name: 'AF 977', destination: "Libreville", passengers: 23, optIn: 16, problems: 16},
-      {id: 1, name: 'AF 5425', destination: "Jerusalem", passengers: 45, optIn: 42, problems: 12},
-      {id: 2, name: 'AF 7365', destination: "Hong Kong", passengers: 246, optIn: 8, problems: 1}
+      {id: 0, name: 'AF 977', destination: 'Libreville', passengers: 23, optIn: 16, problems: 16},
+      {id: 1, name: 'AF 5425', destination: 'Jerusalem', passengers: 45, optIn: 42, problems: 12},
+      {id: 2, name: 'AF 7365', destination: 'Hong Kong', passengers: 246, optIn: 8, problems: 1}
     ];
 
     $scope.problems = [];
     $scope.problems[$scope.flights[0].id] = [
-      {id: 0, type: "Report", passengers: 16, solved: 16},
-      {id: 1, type: "Bagage Perdu", passengers: 1, solved: 0},
-      {id: 2, type: "Annulation", passengers: 2, solved: 0}
+      {id: 0, type: 'Report', passengers: 16, solved: 16},
+      {id: 1, type: 'Bagage Perdu', passengers: 1, solved: 0},
+      {id: 2, type: 'Annulation', passengers: 2, solved: 0}
     ];
     $scope.listProblems = false;
 
@@ -36,7 +36,7 @@ angular.module('hackathonAf2App')
     var contentString = '<div id="content">' +
       '<div id="siteNotice">' +
       '</div>' +
-      '<h1 id="thirdHeading" class="marker-heading">M. Pierre Poulpi</h>' +
+      '<h1 id="thirdHeading" class="marker-heading">M. Pierre Poulpi</h1>' +
       '<div id="bodyContent" class="marker-details">' +
       '<p><b>Dossier BBB222</b><br>' +
       '<b>Vol: </b> AF 977<br>' +
@@ -128,19 +128,20 @@ angular.module('hackathonAf2App')
     };
 
     // Methods
+    // TODO Finish modal implementation. There's a catch
     $scope.showAModal = function () {
-      console.log("Called show modal");
+      console.log('Called show modal');
       // Just provide a template url, a controller and call 'showModal'.
       ModalService.showModal({
-        templateUrl: "yesno/yesno.html",
-        controller: "YesNoController"
+        templateUrl: 'yesno/yesno.html',
+        controller: 'YesNoController'
       }).then(function (modal) {
         // The modal object has the element built, if this is a bootstrap modal
         // you can call 'modal' to show it, if it's a custom modal just show or hide
         // it as you need to.
         modal.element.modal();
         modal.close.then(function (result) {
-          $scope.message = result ? "You said Yes" : "You said No";
+          $scope.message = result ? 'You said Yes' : 'You said No';
         });
       });
 
