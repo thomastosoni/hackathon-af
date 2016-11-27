@@ -25,6 +25,11 @@ angular.module('hackathonAf2App')
       {id: 2, type: "Annulation", passengers: 2, solved: 0}
     ];
 
+    $scope.parisCenter = {
+      latitude: 48.905636,
+      longitude: 2.406023
+    };
+
     $scope.listProblems = false;
 
 
@@ -51,7 +56,7 @@ angular.module('hackathonAf2App')
       '</div>'+
       '</div>';
 
-    var infowindow = new google.maps.InfoWindow({
+    var infoWindow = new google.maps.InfoWindow({
       content: contentString
     });
 
@@ -60,11 +65,8 @@ angular.module('hackathonAf2App')
     $scope.map = {
       show: true,
       showTraffic: true,
-      center: {
-        latitude: 48.8591778,
-        longitude: 2.3155471
-      },
-      zoom: 12,
+      center: $scope.parisCenter,
+      zoom: 11,
       options: {
         streetViewControl: false,
         mapTypeControl: true,
@@ -85,7 +87,7 @@ angular.module('hackathonAf2App')
       markersEvents: {
         click: function (marker) {
           console.log('Click marker');
-          infowindow.open($scope.map, marker);
+          infoWindow.open($scope.map, marker);
         }
       },
       window: {
@@ -98,7 +100,9 @@ angular.module('hackathonAf2App')
       }
     };
 
+
     uiGmapGoogleMapApi.then(function () {
+
       // You can now merge your options which need google.map helpers
       angular.merge($scope.map, {
         options: {
