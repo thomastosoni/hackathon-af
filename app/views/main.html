@@ -34,8 +34,8 @@
     <div class="col-xs-4">
       <p>Problèmes Identifiés</p>
       <p>{{flight.optIn}}</p>
-      <a ng-show="!listProblems" ng-click="listProblems = true">Lister les problèmes</a>
-      <a ng-show="listProblems" ng-click="listProblems = false">Cacher les problèmes</a>
+      <a ng-show="!listProblems" ng-click="listProblems = true">Afficher les irrégularités</a>
+      <a ng-show="listProblems" ng-click="listProblems = false">Réduire</a>
     </div>
   </div>
 
@@ -57,10 +57,7 @@
   </div>
 </div>
 
-<!--<ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id"></ui-gmap-marker>-->
-
-
-<div class="jumbotron">
+<div ng-if="listProblems" class="jumbotron">
   <ui-gmap-google-map center="map.center" zoom="map.zoom" options='map.options'>
 
     <ui-gmap-window
@@ -78,6 +75,8 @@
       events="map.markersEvents"
       options="'options'">
     </ui-gmap-markers>
+
+    <!--Circles-->
 
     <ui-gmap-circle
       radius="30000"

@@ -78,11 +78,42 @@ angular.module('hackathonAf2App')
         id: 1,
         latitude: 48.8591778,
         longitude: 2.3155471
-
       }, {
         id: 2,
-        latitude: 39.5925511,
-        longitude: 2.633202
+        latitude: 49.006299,
+        longitude: 2.585805
+      }, {
+        id: 3,
+        latitude: 49.000299,
+        longitude: 2.585805
+      }, {
+        id: 4,
+        latitude: 49.006299,
+        longitude: 2.584805
+      }, {
+        id: 5,
+        latitude: 49.006299,
+        longitude: 2.585805
+      }, {
+        id: 6,
+        latitude: 49.006699,
+        longitude: 2.587505
+      }, {
+        id: 7,
+        latitude: 49.005499,
+        longitude: 2.580805
+      }, {
+        id: 8,
+        latitude: 49.005599,
+        longitude: 2.589805
+      }, {
+        id: 9,
+        latitude: 48.932589,
+        longitude: 2.449258
+      }, {
+        id: 10,
+        latitude: 48.930689,
+        longitude: 2.455258
       }],
       markersEvents: {
         click: function (marker) {
