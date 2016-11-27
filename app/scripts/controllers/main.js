@@ -129,11 +129,18 @@ angular.module('hackathonAf2App')
     };
 
     // Methods
-
     $scope.$watch('selectedFlight', function (flight) {
       if (flight !== undefined) {
         $scope.flight = $scope.flights[flight];
         $scope.problem = $scope.problems[flight];
+      }
+    });
+
+    $('input[name="daterange"]').daterangepicker({
+      singleDatePicker: true,
+      showDropdowns: true,
+      locale: {
+        format: 'DD/MM/YYYY'
       }
     });
 

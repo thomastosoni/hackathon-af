@@ -1,16 +1,23 @@
 <div class="jumbotron">
   <div class="row">
-    <div class="col-xs-3">
+    <div class="col-xs-4">
       <form name="form">
         <label class="pull-left" for="flightsSelect">Choisissez un aéroport: </label>
         <select class="form-control" name="selectAirport" id="airportSelect">
-          <option>France - Charles-De-Gaulle</option>
-          <option>France - Orly</option>
+          <option>Paris Charles-De-Gaulle - France</option>
+          <option>Paris Orly - France</option>
         </select>
       </form>
     </div>
 
-    <div class="col-xs-3">
+    <div class="col-xs-4">
+      <form name="form">
+        <label class="pull-left" for="dateSelect">Choisissez une date: </label>
+        <input class="form-control" type="text" id="dateSelect" name="daterange" value="28/11/2016"/>
+      </form>
+    </div>
+
+    <div class="col-xs-4">
       <form name="form">
         <label class="pull-left" for="flightsSelect">Choisissez un vol: </label>
         <select class="form-control" name="repeatSelect" id="flightsSelect" ng-model="selectedFlight">
