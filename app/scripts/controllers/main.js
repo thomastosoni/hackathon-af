@@ -25,45 +25,42 @@ angular.module('hackathonAf2App')
       {id: 2, type: "Annulation", passengers: 2, solved: 0},
       {id: 3, type: "Report", passengers: 1, solved: 0}
     ];
+    $scope.listProblems = false;
+
+    // Maps Data
 
     $scope.parisCenter = {
       latitude: 48.905636,
       longitude: 2.406023
     };
 
-    $scope.listProblems = false;
-
-
-    $scope.$watch('selectedFlight', function (flight) {
-      if (flight !== undefined) {
-        $scope.flight = $scope.flights[flight];
-        $scope.problem = $scope.problems[flight];
-      }
-    });
-
-    var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="thirdHeading" class="marker-heading">M. Pierre Poulpi</h1>'+
-      '<div id="bodyContent" class="marker-details">'+
+    var contentString = '<div id="content">' +
+      '<div id="siteNotice">' +
+      '</div>' +
+      '<h1 id="thirdHeading" class="marker-heading">M. Pierre Poulpi</h1>' +
+      '<div id="bodyContent" class="marker-details">' +
       '<p><b>Dossier BBB222</b><br>' +
       '<b>Vol: </b> AF 977<br>' +
       '<b>Irrégularité: </b> Vol reporté<br>' +
       '<b>Départ: </b> le 28/11/206 à 14h30<br>' +
       '<b>Point de départ: </b> Paris CDG<br>' +
-      '<b>Destination: </b> Libreville LBV<br>'+
-      '<b>Hotel: </b> Kyriad Gare du Nord<br>'+
-      '<b>Numéro: </b><a href="">06 17 63 29 18</a></p>'+
-      '<p>Options Activées<br/><a href="">Display</a> <a href="">Sms</a> <a href="">Bot</a> <a href="">Appel</a></p>'+
-      '<p><a href="https://www.google.com">Fiche détaillée</a></p>'+
-      '<p style="font-size: 13px !important;">Dernière mise à jour: il y a <b>17</b> minutes</p>'+
-      '</div>'+
+      '<b>Destination: </b> Libreville LBV<br>' +
+      '<b>Hotel: </b> Kyriad Gare du Nord<br>' +
+      '<b>Numéro: </b><a href="">06 17 63 29 18</a></p>' +
+      '<p>Options Activées<br/>' +
+      '<button  class="btn btn-sm" ng-click="sendMsg()" href="">Display</button>' +
+      ' <button class="btn btn-sm" ng-click="sendMsg()" href="">Sms</button>' +
+      ' <button class="btn btn-sm" ng-click="sendMsg()" href="">Bot</button>' +
+      ' <button class="btn btn-sm" ng-click="sendMsg()" href="">Appel</button>' +
+      '</p>' +
+      '<p><a href="https://www.google.com">Fiche détaillée</a></p>' +
+      '<p style="font-size: 13px !important;">Dernière mise à jour: il y a <b>17</b> minutes</p>' +
+      '</div>' +
       '</div>';
 
     var infoWindow = new google.maps.InfoWindow({
       content: contentString
     });
-
 
     // all the basics settings (don't need google.map helpers)
     $scope.map = {
@@ -121,32 +118,26 @@ angular.module('hackathonAf2App')
       }],
       markersEvents: {
         click: function (marker) {
-          console.log('Click marker');
           infoWindow.open($scope.map, marker);
         }
       },
       window: {
         marker: {},
         show: false,
-        closeClick: function () {
-          // this.show = false;
-        },
         options: {}
       }
     };
 
+    // Methods
+
+    $scope.$watch('selectedFlight', function (flight) {
+      if (flight !== undefined) {
+        $scope.flight = $scope.flights[flight];
+        $scope.problem = $scope.problems[flight];
+      }
+    });
 
     uiGmapGoogleMapApi.then(function () {
-
-      // You can now merge your options which need google.map helpers
-      angular.merge($scope.map, {
-        options: {
-          //   mapTypeId: google.MapTypeId.ROADMAP,
-          //   zoomControlOptions: {
-          //     style: google.maps.ZoomControlStyle.LARGE,
-          //     position: google.maps.ControlPosition.LEFT_CENTER
-          //   }
-        }
-      });
+      // Someday do something
     })
   }]);
