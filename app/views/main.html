@@ -47,14 +47,14 @@
   <div ng-show="listProblems" class="row">
     <table class="table">
       <thead>
-      <td>Type</td>
-      <td>Nombre de passagers affectés</td>
-      <td>Actions</td>
+      <td><b>Type</b></td>
+      <td><b>Nombre de passagers affectés</b></td>
+      <td><b>Actions</b></td>
       </thead>
       <tr ng-repeat="p in problems[selectedFlight]">
         <td>{{p.type}}</td>
         <td>{{p.passengers}}</td>
-        <td ng-click="solve(p)"><a>Résoudre</a></td>
+        <td><a ng-click="solve(p)">Détails</a><a class="spaced" ng-click="solve(p)">Résoudre</a></td>
       </tr>
       </tbody>
     </table>

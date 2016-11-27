@@ -173,6 +173,10 @@ body {
   width: 100%;
 }
 
+.spaced {
+  margin-left: 10px;
+}
+
 /*MARKER*/
 
 .marker-heading {

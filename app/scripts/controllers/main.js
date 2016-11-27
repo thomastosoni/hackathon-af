@@ -22,7 +22,8 @@ angular.module('hackathonAf2App')
     $scope.problems[$scope.flights[0].id] = [
       {id: 0, type: "Délai", passengers: 16, solved: 16},
       {id: 1, type: "Bagage Perdu", passengers: 1, solved: 0},
-      {id: 2, type: "Annulation", passengers: 2, solved: 0}
+      {id: 2, type: "Annulation", passengers: 2, solved: 0},
+      {id: 3, type: "Report", passengers: 1, solved: 0}
     ];
 
     $scope.parisCenter = {
