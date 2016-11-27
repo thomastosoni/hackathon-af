@@ -20,9 +20,9 @@ angular.module('hackathonAf2App')
 
     $scope.problems = [];
     $scope.problems[$scope.flights[0].id] = [
-      {id: 0, type:"Délai", passengers: 16, solved: 16},
-      {id: 1, type:"Bagage Perdu", passengers: 1, solved: 0},
-      {id: 2, type:"Annulation", passengers: 2, solved: 0}
+      {id: 0, type: "Délai", passengers: 16, solved: 16},
+      {id: 1, type: "Bagage Perdu", passengers: 1, solved: 0},
+      {id: 2, type: "Annulation", passengers: 2, solved: 0}
     ];
 
     $scope.listProblems = false;
@@ -34,6 +34,27 @@ angular.module('hackathonAf2App')
         $scope.problem = $scope.problems[flight];
       }
     });
+
+    var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="thirdHeading" class="marker-heading">M. François Dupont</h1>'+
+      '<div id="bodyContent" class="marker-details">'+
+      '<p>' +
+      '<b>Vol: </b> AF 1536<br>' +
+      '<b>Irrégularité: </b> Vol retardé<br>' +
+      '<b>Temps de retard: </b> 3h<br>' +
+      '<b>Point de départ: </b> Paris<br>' +
+      '<b>Destination: </b> Jérusalem</p>'+
+      '<p>Actions Disponibles<br/><a href="">Display</a> <a href="">Email </a> <a href="">Sms</a> <a href="">Bot</a> <a href="">Appel</a></p>'+
+      '<p><a href="https://www.google.com">Fiche détaillée</a></p>'+
+      '</div>'+
+      '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
 
     // all the basics settings (don't need google.map helpers)
     $scope.map = {
@@ -51,46 +72,41 @@ angular.module('hackathonAf2App')
         rotateControl: true,
         zoomControl: true
       },
-      markers: [],
-      events: {
-        click: function (map, eventName, originalEventArgs) {
-          var e = originalEventArgs[0];
-          var lat = e.latLng.lat(), lon = e.latLng.lng();
-          var marker = {
-            id: Date.now(),
-            coords: {
-              latitude: lat,
-              longitude: lon
-            }
-          };
-          $scope.map.markers.push(marker);
-          console.log($scope.map.markers);
-          $scope.$apply();
+      markers: [{
+        id: 1,
+        latitude: 48.8591778,
+        longitude: 2.3155471
+
+      }, {
+        id: 2,
+        latitude: 39.5925511,
+        longitude: 2.633202
+      }],
+      markersEvents: {
+        click: function (marker) {
+          console.log('Click marker');
+          infowindow.open($scope.map, marker);
         }
+      },
+      window: {
+        marker: {},
+        show: false,
+        closeClick: function () {
+          // this.show = false;
+        },
+        options: {}
       }
     };
-
-    $scope.onClick = function (data) {
-      $scope.windowOptions.show = !$scope.windowOptions.show;
-      console.log('$scope.windowOptions.show: ', $scope.windowOptions.show);
-      console.log('This is a ' + data);
-      //alert('This is a ' + data);
-    };
-
-    $scope.closeClick = function () {
-      $scope.windowOptions.show = false;
-    };
-
 
     uiGmapGoogleMapApi.then(function () {
       // You can now merge your options which need google.map helpers
       angular.merge($scope.map, {
         options: {
-        //   mapTypeId: google.MapTypeId.ROADMAP,
-        //   zoomControlOptions: {
-        //     style: google.maps.ZoomControlStyle.LARGE,
-        //     position: google.maps.ControlPosition.LEFT_CENTER
-        //   }
+          //   mapTypeId: google.MapTypeId.ROADMAP,
+          //   zoomControlOptions: {
+          //     style: google.maps.ZoomControlStyle.LARGE,
+          //     position: google.maps.ControlPosition.LEFT_CENTER
+          //   }
         }
       });
     })

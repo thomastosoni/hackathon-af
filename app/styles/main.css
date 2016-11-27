@@ -173,3 +173,12 @@ body {
   width: 100%;
 }
 
+/*MARKER*/
+
+.marker-heading {
+  font-size: 20px !important;
+}
+
+.marker-details p {
+    font-size: 16px !important;
+}
