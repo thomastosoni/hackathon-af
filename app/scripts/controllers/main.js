@@ -13,9 +13,9 @@ angular.module('hackathonAf2App')
     // Data Init
     $scope.selectedFlight = false;
     $scope.flights = [
-      {id: 0, name: 'AF 1536', passengers: 23, optIn: 16, problems: 16},
-      {id: 1, name: 'AF 5425', passengers: 45, optIn: 42, problems: 12},
-      {id: 2, name: 'AF 7365', passengers: 56, optIn: 8, problems: 1}
+      {id: 0, name: 'AF 977', destination: "Libreville", passengers: 23, optIn: 16, problems: 16},
+      {id: 1, name: 'AF 5425', destination: "Jerusalem", passengers: 45, optIn: 42, problems: 12},
+      {id: 2, name: 'AF 7365', destination: "Hong Kong", passengers: 246, optIn: 8, problems: 1}
     ];
 
     $scope.problems = [];
@@ -43,16 +43,19 @@ angular.module('hackathonAf2App')
     var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
-      '<h1 id="thirdHeading" class="marker-heading">M. François Dupont</h1>'+
+      '<h1 id="thirdHeading" class="marker-heading">M. Pierre Poulpi</h1>'+
       '<div id="bodyContent" class="marker-details">'+
-      '<p>' +
-      '<b>Vol: </b> AF 1536<br>' +
-      '<b>Irrégularité: </b> Vol retardé<br>' +
-      '<b>Temps de retard: </b> 3h<br>' +
-      '<b>Point de départ: </b> Paris<br>' +
-      '<b>Destination: </b> Jérusalem</p>'+
-      '<p>Actions Disponibles<br/><a href="">Display</a> <a href="">Email </a> <a href="">Sms</a> <a href="">Bot</a> <a href="">Appel</a></p>'+
+      '<p><b>Dossier BBB222</b><br>' +
+      '<b>Vol: </b> AF 977<br>' +
+      '<b>Irrégularité: </b> Vol reporté<br>' +
+      '<b>Départ: </b> le 28/11/206 à 14h30<br>' +
+      '<b>Point de départ: </b> Paris CDG<br>' +
+      '<b>Destination: </b> Libreville LBV<br>'+
+      '<b>Hotel: </b> Kyriad Gare du Nord<br>'+
+      '<b>Numéro: </b><a href="">06 17 63 29 18</a></p>'+
+      '<p>Options Activées<br/><a href="">Display</a> <a href="">Sms</a> <a href="">Bot</a> <a href="">Appel</a></p>'+
       '<p><a href="https://www.google.com">Fiche détaillée</a></p>'+
+      '<p style="font-size: 13px !important;">Dernière mise à jour: il y a <b>17</b> minutes</p>'+
       '</div>'+
       '</div>';
 
@@ -76,8 +79,8 @@ angular.module('hackathonAf2App')
       },
       markers: [{
         id: 1,
-        latitude: 48.8591778,
-        longitude: 2.3155471
+        latitude: 48.8795288,
+        longitude: 2.3535132
       }, {
         id: 2,
         latitude: 49.006299,

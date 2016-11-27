@@ -23,15 +23,19 @@
 
 <div ng-show="selectedFlight" class="jumbotron information">
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-3">
       <p>Nombre de Passagers</p>
       <p>{{flight.passengers}}</p>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-3">
+      <p>Destination</p>
+      <p>{{flight.destination}}</p>
+    </div>
+    <div class="col-xs-3">
       <p>Protégés par Gabriel</p>
       <p>{{flight['optIn']}}</p>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-3">
       <p>Problèmes Identifiés</p>
       <p>{{flight.optIn}}</p>
       <a ng-show="!listProblems" ng-click="listProblems = true">Afficher les irrégularités</a>
