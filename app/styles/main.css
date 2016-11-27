@@ -203,4 +203,11 @@ body {
 .marker-details button {
   font-size: 12px !important;
   padding: 5px 10px !important;
+  background-color: white;
+  border-color: black;
+}
+
+.marker-details button:hover {
+  background-color: #bfbfbf;
+  border-color: black;
 }

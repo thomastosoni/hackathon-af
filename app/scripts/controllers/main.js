@@ -8,7 +8,7 @@
  * Controller of the hackathonAf2App
  */
 angular.module('hackathonAf2App')
-  .controller('MainCtrl', ['$scope', '$log', 'uiGmapGoogleMapApi', function ($scope, $log, uiGmapGoogleMapApi) {
+  .controller('MainCtrl', ['$scope', '$log', 'uiGmapGoogleMapApi', 'ModalService', function ($scope, $log, uiGmapGoogleMapApi, ModalService) {
 
     // Data Init
     $scope.selectedFlight = false;
@@ -20,10 +20,9 @@ angular.module('hackathonAf2App')
 
     $scope.problems = [];
     $scope.problems[$scope.flights[0].id] = [
-      {id: 0, type: "Délai", passengers: 16, solved: 16},
+      {id: 0, type: "Report", passengers: 16, solved: 16},
       {id: 1, type: "Bagage Perdu", passengers: 1, solved: 0},
-      {id: 2, type: "Annulation", passengers: 2, solved: 0},
-      {id: 3, type: "Report", passengers: 1, solved: 0}
+      {id: 2, type: "Annulation", passengers: 2, solved: 0}
     ];
     $scope.listProblems = false;
 
@@ -37,21 +36,21 @@ angular.module('hackathonAf2App')
     var contentString = '<div id="content">' +
       '<div id="siteNotice">' +
       '</div>' +
-      '<h1 id="thirdHeading" class="marker-heading">M. Pierre Poulpi</h1>' +
+      '<h1 id="thirdHeading" class="marker-heading">M. Pierre Poulpi</h>' +
       '<div id="bodyContent" class="marker-details">' +
       '<p><b>Dossier BBB222</b><br>' +
       '<b>Vol: </b> AF 977<br>' +
       '<b>Irrégularité: </b> Vol reporté<br>' +
-      '<b>Départ: </b> le 28/11/206 à 14h30<br>' +
+      '<b>Départ: </b> le 28/`1/206 à 14h30<br>' +
       '<b>Point de départ: </b> Paris CDG<br>' +
       '<b>Destination: </b> Libreville LBV<br>' +
       '<b>Hotel: </b> Kyriad Gare du Nord<br>' +
       '<b>Numéro: </b><a href="">06 17 63 29 18</a></p>' +
-      '<p>Options Activées<br/>' +
-      '<button  class="btn btn-sm" ng-click="sendMsg()" href="">Display</button>' +
-      ' <button class="btn btn-sm" ng-click="sendMsg()" href="">Sms</button>' +
-      ' <button class="btn btn-sm" ng-click="sendMsg()" href="">Bot</button>' +
-      ' <button class="btn btn-sm" ng-click="sendMsg()" href="">Appel</button>' +
+      '<p>Message de Rappel<br/>' +
+      '<button  class="btn btn-sm" ng-click="showAModal()" data-ng-click="showAModal()"  href="">Display</button>' +
+      ' <button class="btn btn-sm" ng-click="showAModal()" href="">Sms</button>' +
+      ' <button class="btn btn-sm" ng-click="showAModal()" href="">Bot</button>' +
+      ' <button class="btn btn-sm" ng-click="showAModal()" href="">Appel</button>' +
       '</p>' +
       '<p><a href="https://www.google.com">Fiche détaillée</a></p>' +
       '<p style="font-size: 13px !important;">Dernière mise à jour: il y a <b>17</b> minutes</p>' +
@@ -129,6 +128,24 @@ angular.module('hackathonAf2App')
     };
 
     // Methods
+    $scope.showAModal = function () {
+      console.log("Called show modal");
+      // Just provide a template url, a controller and call 'showModal'.
+      ModalService.showModal({
+        templateUrl: "yesno/yesno.html",
+        controller: "YesNoController"
+      }).then(function (modal) {
+        // The modal object has the element built, if this is a bootstrap modal
+        // you can call 'modal' to show it, if it's a custom modal just show or hide
+        // it as you need to.
+        modal.element.modal();
+        modal.close.then(function (result) {
+          $scope.message = result ? "You said Yes" : "You said No";
+        });
+      });
+
+    };
+
     $scope.$watch('selectedFlight', function (flight) {
       if (flight !== undefined) {
         $scope.flight = $scope.flights[flight];
@@ -146,5 +163,5 @@ angular.module('hackathonAf2App')
 
     uiGmapGoogleMapApi.then(function () {
       // Someday do something
-    })
+    });
   }]);
